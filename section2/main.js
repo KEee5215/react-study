@@ -1,8 +1,18 @@
 function App() {
   const [username, setUsername] = React.useState("");
   const [password, setPassword] = React.useState("");
+
+  const usernameError =
+    username.length < 3 && username.length > 0 ? "error-message" : "";
+
+  const passwordError =
+    password.length < 3 && password.length > 0 ? "error-message" : "";
   function handleSubmit(event) {
     event.preventDefault();
+    if (usernameError || passwordError) {
+      alert("Please fill out all fields correctly");
+      return;
+    }
     alert(`Username: ${username} Password: ${password}`);
     setUsername("");
     setPassword("");
@@ -22,7 +32,7 @@ function App() {
         <h1>Login</h1>
         <input
           style={{ margin: "10px" }}
-          className="username"
+          className={usernameError}
           type="text"
           value={username}
           onChange={(event) => setUsername(event.target.value)}
@@ -30,7 +40,7 @@ function App() {
         <br></br>
         <input
           style={{ margin: "10px" }}
-          className="password"
+          className={passwordError}
           type="text"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
