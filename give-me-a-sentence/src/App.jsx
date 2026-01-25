@@ -1,35 +1,53 @@
 import "./App.css";
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 
 function App() {
+  const [currentTime, setCurrentTime] = useState(new Date().toLocaleString());
+
   const base_url = "https://api-v2.cenguigui.cn/api/juhe/?type=json&msg=";
 
+  const fetcher = (...args) => fetch(...args).then((res) => res.json());
   const [msgType, setMsgType] = useState("毒鸡汤");
+  const {
+    data,
+    error,
+    isLoading,
+    mutate: getSentence,
+  } = useSWR(`${base_url}${msgType}`, fetcher);
 
-  const [text, setText] = useState("");
-  const [isLoading, setIsLoading] = useState(false);
+  // const [text, setText] = useState("");
+  // const [isLoading, setIsLoading] = useState(false);
 
   // function handClicked() {
   //   isLoading ? setIsLoading(false) : setIsLoading(true);
   // }
-  async function getSentence() {
-    setIsLoading(true);
-    console.log(base_url + msgType);
-    const response = await fetch(base_url + msgType);
-    const sentence = await response.json();
+  // async function getSentence() {
+  //   setIsLoading(true);
+  //   console.log(base_url + msgType);
+  //   const response = await fetch(base_url + msgType);
+  //   const sentence = await response.json();
 
-    setText(sentence.text);
-    setIsLoading(false);
-  }
+  //   setText(sentence.text);
+  //   setIsLoading(false);
+  // }
+
+  // useEffect(() => {
+  //   getSentence();
+  // }, []);
 
   useEffect(() => {
-    getSentence();
+    const timer = setInterval(() => {
+      setCurrentTime(new Date().toLocaleString());
+    }, 1000);
+    return () => clearInterval(timer);
   }, []);
 
   return (
     <>
       <main>
         <h1>Give Me A Sentence</h1>
+        <p>当前时间：{currentTime}</p>
         <select
           name="msgType"
           id="msgType"
@@ -47,7 +65,7 @@ function App() {
           <option value="情话">情话</option>
           <option value="骚话">骚话</option>
         </select>
-        <p>{text}</p>
+        <p>{data?.text || ""}</p>
         <button onClick={getSentence} disabled={isLoading}>
           {isLoading ? "Loading..." : "Get a sentence"}
         </button>
