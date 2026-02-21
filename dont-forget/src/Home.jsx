@@ -1,5 +1,7 @@
+import MemoList from "./components/MemoList";
+
 function Home() {
-  return <h1>Home</h1>;
+  return <MemoList></MemoList>;
 }
 
 export default Home;

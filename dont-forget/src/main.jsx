@@ -1,21 +1,15 @@
 import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 
-import { createBrowserRouter, RouterProvider } from "react-router";
-import About from "./About.jsx";
-import Home from "./Home.jsx";
+import "@fontsource/roboto/300.css";
+import "@fontsource/roboto/400.css";
+import "@fontsource/roboto/500.css";
+import "@fontsource/roboto/700.css";
 
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Home />,
-  },
-  {
-    path: "/about",
-    element: <About />,
-  },
-]);
+import App from "./App.jsx";
 
 createRoot(document.getElementById("root")).render(
-  <RouterProvider router={router} />
+  <StrictMode>
+    <App />
+  </StrictMode>
 );
