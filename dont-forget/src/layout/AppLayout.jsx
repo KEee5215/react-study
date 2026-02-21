@@ -3,10 +3,6 @@ import Button from "@mui/material/Button";
 import NavBar from "../components/NavBar";
 import ButtonNavBar from "../components/ButtonNavBar";
 function AppLayout() {
-  const navigate = useNavigate();
-
-  const { pathname } = useLocation();
-
   return (
     <>
       <NavBar></NavBar>

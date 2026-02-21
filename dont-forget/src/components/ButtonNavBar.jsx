@@ -6,24 +6,39 @@ import HomeIcon from "@mui/icons-material/Home";
 
 import SearchIcon from "@mui/icons-material/Search";
 import AddIcon from "@mui/icons-material/Add";
-import { useNavigate } from "react-router";
-export default function SimpleBottomNavigation() {
-  const [value, setValue] = React.useState(0);
+import { useLocation, useNavigate } from "react-router";
+
+const navs = [
+  { label: "Home", value: "/", icon: <HomeIcon /> },
+  { label: "Add", value: "/add", icon: <AddIcon /> },
+  { label: "Search", value: "/search", icon: <SearchIcon /> },
+];
+
+export default function ButtonNavBar() {
   const navigate = useNavigate();
-  const handleChange = (event, newValue) => {
+  const location = useLocation();
+  const [value, setValue] = React.useState(location.pathname);
+
+  React.useEffect(() => {
+    setValue(location.pathname);
+  }, [location.pathname]);
+
+  const handleChange = (_event, newValue) => {
     setValue(newValue);
-    // 根据按钮索引切换路由
-    if (newValue === 0) navigate("/");
-    if (newValue === 1) navigate("/add");
-    if (newValue === 2) navigate("/search");
+    navigate(newValue);
   };
 
   return (
     <Box sx={{ width: "100%", position: "fixed", bottom: 0 }}>
       <BottomNavigation showLabels value={value} onChange={handleChange}>
-        <BottomNavigationAction label="Home" icon={<HomeIcon />} />
-        <BottomNavigationAction label="Add" icon={<AddIcon />} />
-        <BottomNavigationAction label="Search" icon={<SearchIcon />} />
+        {navs.map((item) => (
+          <BottomNavigationAction
+            key={item.value}
+            label={item.label}
+            value={item.value}
+            icon={item.icon}
+          />
+        ))}
       </BottomNavigation>
     </Box>
   );

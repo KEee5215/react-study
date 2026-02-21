@@ -4,7 +4,6 @@ import ListItemIcon from "@mui/material/ListItemIcon";
 import ListItemText from "@mui/material/ListItemText";
 import Checkbox from "@mui/material/Checkbox";
 import IconButton from "@mui/material/IconButton";
-import CommentIcon from "@mui/icons-material/Comment";
 import Divider from "@mui/material/Divider";
 import * as React from "react";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
@@ -30,8 +29,8 @@ function MemoListItem({ value, labelId }) {
       <ListItem
         //delete button
         secondaryAction={
-          <IconButton edge="end" aria-label="comments">
-            <CommentIcon />
+          <IconButton edge="end" aria-label="deleteButton">
+            <HighlightOffIcon />
           </IconButton>
         }
         disablePadding
@@ -50,7 +49,7 @@ function MemoListItem({ value, labelId }) {
           <ListItemText
             id={labelId}
             primary={value.title}
-            secondary={value.todo}
+            secondary={value.content}
           />
         </ListItemButton>
       </ListItem>
