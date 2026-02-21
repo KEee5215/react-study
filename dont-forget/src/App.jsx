@@ -1,7 +1,8 @@
 import { BrowserRouter, Route, Routes } from "react-router";
-import Home from "./Home";
-import About from "./About";
-import AppLayout from "./Applayout";
+import Home from "./router/Home";
+import AppLayout from "./layout/AppLayout";
+import Add from "./router/Add";
+import Search from "./router/Search";
 
 function App() {
   return (
@@ -9,6 +10,8 @@ function App() {
       <Routes>
         <Route path="/" element={<AppLayout />}>
           <Route index element={<Home />} />
+          <Route path="add" element={<Add />} />
+          <Route path="search" element={<Search />} />
         </Route>
       </Routes>
     </BrowserRouter>
