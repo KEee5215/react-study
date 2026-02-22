@@ -8,7 +8,6 @@ import toast from "react-hot-toast";
 
 function Add() {
   const [_memoList, setMemoList] = useLocalStorage("memoList", []);
-  const [_checkedList, setCheckedList] = useLocalStorage("checkedList", []);
 
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
@@ -20,11 +19,6 @@ function Add() {
     setMemoList((memoList) => [
       ...memoList,
       { id: Date.now(), title, content, checked: false },
-    ]);
-
-    setCheckedList((checkedList) => [
-      ...checkedList,
-      { id: Date.now(), checked: false },
     ]);
 
     setTitle("");
@@ -43,7 +37,7 @@ function Add() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: "56px 16px",
+          padding: "56px 0px",
         }}
       >
         <TextField

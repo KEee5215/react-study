@@ -8,11 +8,19 @@ function Search() {
 
   return (
     <>
-      <Box sx={{ width: "100%", padding: "56px 0" }}>
+      <Box
+        sx={{
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          padding: "56px 0px",
+        }}
+      >
         <TextField
           fullWidth
           id="outlined-basic"
-          label="Outlined"
+          label="search"
           variant="outlined"
           value={searchItem}
           onChange={(e) => setSearchItem(e.target.value)}
