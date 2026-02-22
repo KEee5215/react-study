@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import React from "react";
 import { useLocalStorage } from "@reactuses/core";
 import { useNavigate } from "react-router";
+import toast from "react-hot-toast";
 
 function Add() {
   const [_memoList, setMemoList] = useLocalStorage("memoList", []);
@@ -24,6 +25,7 @@ function Add() {
     setContent("");
 
     // 返回主页
+    toast.success("Memo added!");
     navigate("/");
   }
 
