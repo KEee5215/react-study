@@ -50,6 +50,24 @@ function MemoListItem({ value, labelId }) {
             id={labelId}
             primary={value.title}
             secondary={value.content}
+            primaryTypographyProps={{
+              sx: {
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                width: "180px", // 可根据实际调整宽度
+                display: "block",
+              },
+            }}
+            secondaryTypographyProps={{
+              sx: {
+                overflow: "hidden",
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap",
+                width: "180px",
+                display: "block",
+              },
+            }}
           />
         </ListItemButton>
       </ListItem>

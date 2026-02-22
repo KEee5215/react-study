@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 
 function Add() {
   const [_memoList, setMemoList] = useLocalStorage("memoList", []);
+  const [_checkedList, setCheckedList] = useLocalStorage("checkedList", []);
 
   const [title, setTitle] = React.useState("");
   const [content, setContent] = React.useState("");
@@ -15,10 +16,15 @@ function Add() {
   const navigate = useNavigate();
 
   function handleAdd() {
-    console.log(title, content);
+    // console.log(title, content);
     setMemoList((memoList) => [
       ...memoList,
-      { id: Date.now(), title, content },
+      { id: Date.now(), title, content, checked: false },
+    ]);
+
+    setCheckedList((checkedList) => [
+      ...checkedList,
+      { id: Date.now(), checked: false },
     ]);
 
     setTitle("");
