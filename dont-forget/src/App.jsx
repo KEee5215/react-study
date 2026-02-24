@@ -13,8 +13,8 @@ function App() {
           <Route index element={<Home />} />
           <Route path="add" element={<Add />} />
           <Route path="search" element={<Search />} />
-          <Route path="memo/:id" element={<MemoItem />} />
         </Route>
+        <Route path="memo/:id" element={<MemoItem />} />
       </Routes>
     </BrowserRouter>
   );

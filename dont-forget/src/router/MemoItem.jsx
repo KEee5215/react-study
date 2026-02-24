@@ -4,6 +4,10 @@ import { useParams, useNavigate } from "react-router";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
+import Fab from "@mui/material/Fab";
+import HomeIcon from "@mui/icons-material/Home";
+import toast from "react-hot-toast";
+import NavBar from "../components/NavBar";
 
 function MemoItem() {
   const { id } = useParams();
@@ -32,7 +36,7 @@ function MemoItem() {
     // 找到对应 memo 的索引
     const idx = memoList.findIndex((item) => item.id === parseInt(id));
     if (idx === -1) {
-      alert("找不到要编辑的备忘录");
+      toast.error("Memo not found");
       return;
     }
 
@@ -43,19 +47,20 @@ function MemoItem() {
     setMemoList(newMemoList);
 
     // 提示并返回主页
-    alert("编辑成功！");
+    toast.success("Memo edited!");
     navigate("/");
   }
 
   return (
     <>
+      <NavBar></NavBar>
       <Box
         sx={{
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: "20px",
+          padding: "60px 16px",
         }}
       >
         <TextField
@@ -86,6 +91,18 @@ function MemoItem() {
           Edit
         </Button>
       </Box>
+      <Fab
+        sx={{
+          position: "absolute",
+          bottom: 56,
+          right: 16,
+        }}
+        color="primary"
+        aria-label="add"
+        onClick={() => navigate("/")}
+      >
+        <HomeIcon />
+      </Fab>
     </>
   );
 }
