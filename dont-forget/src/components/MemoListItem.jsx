@@ -8,7 +8,7 @@ import Divider from "@mui/material/Divider";
 import * as React from "react";
 import HighlightOffIcon from "@mui/icons-material/HighlightOff";
 
-function MemoListItem({ value, labelId }) {
+function MemoListItem({ value, labelId, deleteMemo }) {
   const [checked, setChecked] = React.useState([]);
 
   const handleToggle = (value) => () => {
@@ -29,7 +29,11 @@ function MemoListItem({ value, labelId }) {
       <ListItem
         //delete button
         secondaryAction={
-          <IconButton edge="end" aria-label="deleteButton">
+          <IconButton
+            edge="end"
+            aria-label="deleteButton"
+            onClick={() => deleteMemo(value.id)}
+          >
             <HighlightOffIcon />
           </IconButton>
         }

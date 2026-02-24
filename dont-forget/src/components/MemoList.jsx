@@ -2,8 +2,9 @@ import List from "@mui/material/List";
 import MemoListItem from "./MemoListItem";
 import { useLocalStorage } from "@reactuses/core";
 import React, { use, useEffect } from "react";
+import toast from "react-hot-toast";
 export default function CheckboxList({ searchItem = "" }) {
-  const [memoList, _setMemoList] = useLocalStorage("memoList", []);
+  const [memoList, setMemoList] = useLocalStorage("memoList", []);
 
   const [filteredMemoList, setFilteredMemoList] = React.useState(memoList);
 
@@ -22,6 +23,12 @@ export default function CheckboxList({ searchItem = "" }) {
     );
   }, [searchItem, memoList]);
 
+  function deleteMemo(id) {
+    setMemoList(memoList.filter((memo) => memo.id !== id));
+
+    toast.success("Memo deleted!", { icon: "🗑️" });
+  }
+
   return (
     <>
       <List
@@ -39,6 +46,7 @@ export default function CheckboxList({ searchItem = "" }) {
               key={value.id}
               value={value}
               labelId={labelId}
+              deleteMemo={deleteMemo}
             ></MemoListItem>
           );
         })}

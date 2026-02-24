@@ -18,6 +18,7 @@ function Search() {
         }}
       >
         <TextField
+          autoComplete="off"
           fullWidth
           id="outlined-basic"
           label="search"
