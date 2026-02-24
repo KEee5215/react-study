@@ -13,7 +13,6 @@ function AppLayout() {
         <Outlet></Outlet>
       </Box>
       <ButtonNavBar></ButtonNavBar>
-      <Toaster />
     </>
   );
 }

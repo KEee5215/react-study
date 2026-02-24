@@ -4,6 +4,7 @@ import AppLayout from "./layout/AppLayout";
 import Add from "./router/Add";
 import Search from "./router/Search";
 import MemoItem from "./router/MemoItem";
+import { Toaster } from "react-hot-toast";
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         </Route>
         <Route path="memo/:id" element={<MemoItem />} />
       </Routes>
+      <Toaster />
     </BrowserRouter>
   );
 }
