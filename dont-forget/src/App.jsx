@@ -3,6 +3,7 @@ import Home from "./router/Home";
 import AppLayout from "./layout/AppLayout";
 import Add from "./router/Add";
 import Search from "./router/Search";
+import MemoItem from "./router/MemoItem";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path="add" element={<Add />} />
           <Route path="search" element={<Search />} />
+          <Route path="memo/:id" element={<MemoItem />} />
         </Route>
       </Routes>
     </BrowserRouter>

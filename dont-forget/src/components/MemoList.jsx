@@ -36,7 +36,6 @@ export default function CheckboxList({ searchItem = "" }) {
           width: "100%",
           maxWidth: "100%",
           bgcolor: "background.paper",
-          padding: "56px 0px",
         }}
       >
         {filteredMemoList.map((value) => {

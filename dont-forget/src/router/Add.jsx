@@ -37,7 +37,6 @@ function Add() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "center",
-          padding: "56px 0px",
         }}
       >
         <TextField
