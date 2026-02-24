@@ -2,9 +2,20 @@ import TextField from "@mui/material/TextField";
 import MemoList from "../components/MemoList";
 import React from "react";
 import Box from "@mui/material/Box";
+import { useSearchParams } from "react-router";
 
 function Search() {
-  const [searchItem, setSearchItem] = React.useState("");
+  // 使用useSearchParams
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [searchItem, setSearchItem] = React.useState(
+    searchParams.get("q") || ""
+  );
+
+  const onChange = (e) => {
+    const query = String(e.target.value);
+    setSearchItem(query);
+    setSearchParams({ q: query });
+  };
 
   return (
     <>
@@ -23,7 +34,7 @@ function Search() {
           label="search"
           variant="outlined"
           value={searchItem}
-          onChange={(e) => setSearchItem(e.target.value)}
+          onChange={onChange}
         />
         <MemoList searchItem={searchItem}></MemoList>
       </Box>

@@ -4,16 +4,17 @@ import { useLocalStorage } from "@reactuses/core";
 import React, { use, useEffect } from "react";
 import toast from "react-hot-toast";
 
-export default function CheckboxList({ searchItem = "" }) {
+export default function MemoList({ searchItem = "" }) {
   const [memoList, setMemoList] = useLocalStorage("memoList", []);
 
   const [filteredMemoList, setFilteredMemoList] = React.useState(memoList);
 
   useEffect(() => {
-    if (searchItem === "") {
+    if (!searchItem || searchItem.trim() === "") {
       setFilteredMemoList(memoList);
       return;
     }
+
     setFilteredMemoList(
       memoList.filter((memo) =>
         memo.title
