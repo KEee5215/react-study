@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script>
+      console.log("1. Script Start"); // 同步任务
+
+      setTimeout(() => {
+        console.log("5. setTimeout (Macro-task)"); // 宏任务
+      }, 0);
+
+      new Promise((resolve) => {
+        console.log("2. Promise Constructor"); // 同步任务
+        resolve();
+      }).then(() => {
+        console.log("4. Promise.then (Micro-task)"); // 微任务
+      });
+
+      async function main() {
+        console.log("3. async function"); // 同步任务
+        await Promise.resolve(); // await后面的代码被放入微任务队列
+        console.log("6. After await (Micro-task 2)"); // 微任务
+      }
+      main();
+    </script>
+  </body>
+</html>
